@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉野賢治 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>吉野賢治 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社タックスナップ（旧：TxTo（テキスト））</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">COO候補</span><span class="badge badge-blue">スタートアップ</span></div>
+  <div class="co-name">株式会社タックスナップ（旧：TxTo（テキスト））</div>
+  <div class="co-url"><a href="https://morich-inc.github.io/job-taxnap-coo./" target="_blank">https://morich-inc.github.io/job-taxnap-coo./</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2022年11月</td></tr><tr><th>従業員数</th><td>15名（正社員8名）</td></tr><tr><th>事業内容</th><td>個人事業主向け確定申告アプリ『Taxnap』開発</td></tr><tr><th>業種</th><td>IT・通信・インターネット</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>年収2,000万円以上も検討可能な高待遇</li><li>スワイプ操作だけで確定申告が完結する革新的UX</li><li>約60社とのアライアンス提携実績あり</li><li>個人事業主・中小企業の課題解決という社会的意義</li><li>COOとして経営参画の機会</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">個人事業主向け確定申告アプリ「タックスナップ」は、スワイプ操作だけで確定申告が完結する革新的なUXにより、急激な成長を遂げています。現在、約60社とのアライアンス提携を実現しており...</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>個人事業主向け確定申告アプリ「タックスナップ」は、スワイプ操作だけで確定申告が完結する革新的なUXにより、急激な成長を遂げています。</p><p>現在、CEO田中氏のトップ営業により、フリーランスプラットフォーマーなど中心に約60社とのアライアンス提携を実現しました。しかし、これはまだ「種まき」の段階に過ぎません。</p><p>1社1社との連携を深め、確実に収益を生むチャネルとして確立し、さらにエンドユーザーである個人事業主自身をパートナー化するBtoBtoCモデルを構築するには、CEOの片手間ではなく、フルコミットできる専任の「執行責任者」が必要です。</p><p>戦略を描くだけでなく、現場に入り込んで泥臭く実行し、事業を爆発的な成長フェーズへと導けるCOO（最高執行責任者）候補を募集します。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 COO候補</div>
+          <div class="job-preview">アライアンス戦略の責任者として、事業を非連続成長させるCOO候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■役割想定</strong></p><p>COO（最高執行責任者）候補として、アライアンス戦略の設計をお任せし、既存パートナーとの関係深化、新規大型チャネルの開拓、そしてこれらを属人的な動きではなく「再現性のある仕組み」へと落とし込む組織づくりをお任せします。</p><p><strong>■詳細業務</strong></p><ul><li><strong>1.既存アライアンスの深耕と収益化</strong><br>- 地方銀行、建設協力会、商工会議所等のキーマンとの関係強化<br>- 提携先ごとの導入スキーム構築と現場への浸透施策（勉強会の実施、同行営業などの泥臭い活動含む）</li><li><strong>2.BtoBtoCパートナーモデルの構築</strong><br>- ユーザーである個人事業主が、タックスナップの販売パートナーとして機能する仕組み（代理店網）の設計<br>- インセンティブ設計、品質管理、不正防止のルール策定</li><li><strong>3.新規チャネル・エンタープライズ開拓</strong><br>- 国、自治体、大手金融機関など、社会的信用の高いステークホルダーへのトップセールス</li><li><strong>4.事業執行・組織マネジメント（Executor）</strong><br>- アライアンス部門のKPI設計、予実管理、ボトルネックの特定と解消<br>- CEOのアイデアや人脈を、誰でも実行可能な「型（Playbook）」に落とし込む仕組み化</li></ul><p><strong>■必須要件</strong></p><ul><li><span class='tag tag-must'>MUST</span> 戦略立案から実行、成果創出までを一気通貫で推進した経験</li><li><span class='tag tag-must'>MUST</span> 事業課題を構造化し、筋の良い打ち手を描くだけでなく、自ら手を動かして成果までつなげた実績</li><li><span class='tag tag-must'>MUST</span> 0→1／1→10フェーズにおいて、事業を非連続に成長させた経験</li><li><span class='tag tag-must'>MUST</span> 売上規模の大小ではなく、自らが主体者として事業成長を牽引した実績</li><li><span class='tag tag-must'>MUST</span> 担当領域に閉じず、会社・業界全体の経営イシューを自ら設定し、実行・成果創出までコミットした経験</li><li><span class='tag tag-must'>MUST</span> 経営者視点で事業・組織を俯瞰し、経営陣の右腕として意思決定と実行を担える方</li></ul><p><strong>■歓迎要件</strong></p><ul><li><span class='tag tag-want'>WANT</span> DX／SaaS／金融領域に関するドメイン知見</li><li><span class='tag tag-want'>WANT</span> アライアンス、BizDev、新規事業開発における実績</li><li><span class='tag tag-want'>WANT</span> スタートアップまたはオーナー企業における意思決定経験、経営者の右腕として事業推進を担った経験</li></ul><p><strong>■求める人物像</strong></p><ul><li>個人事業主・中小企業の課題解決、業界変革に本気で向き合える方</li><li>社会的意義と事業成長の両方に強い当事者意識を持てる方</li><li>AIネイティブな働き方を前向きに取り入れ、生産性高く成果創出できる方</li><li>少数精鋭組織ならではの裁量、スピード感、変化の大きさを楽しめる方</li></ul><p><strong>■待遇</strong></p><p>年収：～2,000万円（インセンティブ・ストックオプション付与、業績によりボーナス支給あり）<br>※ご経験・能力次第では上記を超える提示可能性有</p><p><strong>■福利厚生</strong></p><ul><li>健康保険、厚生年金、雇用保険</li><li>社員旅行</li><li>社宅控除</li><li>タックスナップ利用料免除</li><li>月5万円までのベビーシッター利用手当（企業割引券併用）</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京（恵比寿）</span><span class="pill">🏠 ハイブリッド勤務（週3出社）</span><span class="pill">✅ 副業可</span><span class="pill">💰 ～2,000万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://morich-inc.github.io/job-taxnap-coo./" target="_blank">🏢 求人詳細</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが吉野賢治 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
